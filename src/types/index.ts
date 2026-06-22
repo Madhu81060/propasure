@@ -1,0 +1,57 @@
+export interface ChatMessage {
+  sender: 'user' | 'bot';
+  text: string;
+  time: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+  image: string;
+}
+
+export interface PricingPlan {
+  name: string;
+  target: string;
+  price: number;
+  priceAnnual: number;
+  features: string[];
+  isFeatured?: boolean;
+}
+
+export interface TimelineStep {
+  step: number;
+  label: string;
+  title: string;
+  desc: string;
+}
+
+export interface TrustBenefit {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+export interface StatItem {
+  number: string;
+  label: string;
+  highlight?: boolean;
+}
+
+export interface ProblemItem {
+  title: string;
+  desc: string;
+}
+
+export interface SolutionItem {
+  title: string;
+  desc: string;
+  icon?: string;
+}
