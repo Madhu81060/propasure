@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1E3A5F;
-  --color-primary-light: #2D568A;
-  --color-primary-dark: #0F2139;
-  --color-secondary: #0F9D58;
-  --color-secondary-light: #13C26C;
-  --color-secondary-dark: #0B7340;
-  --color-accent: #D4AF37;
-  --color-accent-light: #E7C962;
-  --color-accent-dark: #A3821C;
+  --color-primary: #1E40AF;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1E3A8A;
+  --color-secondary: #0F172A;
+  --color-secondary-light: #1E293B;
+  --color-secondary-dark: #020617;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FBBF24;
+  --color-accent-dark: #D97706;
   --color-gray-section: #F8FAFC;
   --font-sans: var(--font-inter), sans-serif;
   
@@ -20,7 +20,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1E293B;
+  --foreground: #334155;
   --font-sans: var(--font-inter);
 }
 
@@ -74,4 +74,70 @@ body {
 
 .animate-pulse-emerald {
   animation: pulse-emerald 2s infinite;
+}
+
+/* Floating animation frames for cards and shapes */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.015);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(8px) scale(0.985);
+  }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-slow 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+/* Premium Card Styles */
+.card-premium {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px -10px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px -15px rgba(30, 64, 175, 0.12), 0 0 0 1.5px rgba(30, 64, 175, 0.08);
+  border-color: rgba(30, 64, 175, 0.2);
+}
+
+/* Form Pulse Ring keyframes */
+@keyframes form-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(30, 64, 175, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 64, 175, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: form-pulse-ring 1.5s infinite;
 }

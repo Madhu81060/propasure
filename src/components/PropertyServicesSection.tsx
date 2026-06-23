@@ -56,12 +56,12 @@ export default function PropertyServicesSection() {
             <div className="p-6 pt-8">
               <h3 className="font-heading font-bold text-lg text-primary mb-4">Legal Services</h3>
               <ul className="flex flex-col gap-3 text-xs sm:text-sm text-text-secondary leading-relaxed">
-                <li><strong>Title Verification:</strong> 30-year deed registry audits.</li>
-                <li><strong>EC Verification:</strong> Encumbrance check registry verification.</li>
-                <li><strong>Ownership Verification:</strong> Mutation validation & checks.</li>
-                <li><strong>Document Review:</strong> Pre-sale draft agreement audits.</li>
-                <li><strong>Sale Agreement Drafting:</strong> Buyer shielding drafts.</li>
-                <li><strong>Registration Assistance:</strong> Sub-registrar biometrics coordination.</li>
+                <li>Title Verification</li>
+                <li>EC Verification</li>
+                <li>Ownership Verification</li>
+                <li>Document Review</li>
+                <li>Sale Agreement Drafting</li>
+                <li>Registration Assistance</li>
               </ul>
             </div>
           </motion.div>
@@ -82,12 +82,12 @@ export default function PropertyServicesSection() {
             <div className="p-6 pt-8">
               <h3 className="font-heading font-bold text-lg text-primary mb-4">Financial Services</h3>
               <ul className="flex flex-col gap-3 text-xs sm:text-sm text-text-secondary leading-relaxed">
-                <li><strong>Home Loans:</strong> Integration securing low rates.</li>
-                <li><strong>Balance Transfer:</strong> Lower active loan interest transfers.</li>
-                <li><strong>Loan Comparison:</strong> Direct bank cost index reports.</li>
-                <li><strong>Property Insurance:</strong> Structural risk protection coverages.</li>
-                <li><strong>Tax Advisory:</strong> Home loan interest deduction strategies.</li>
-                <li><strong>NRI Services:</strong> Non-resident capital management.</li>
+                <li>Home Loans</li>
+                <li>Balance Transfer</li>
+                <li>Loan Comparison</li>
+                <li>Property Insurance</li>
+                <li>Tax Advisory</li>
+                <li>NRI Services</li>
               </ul>
             </div>
           </motion.div>
@@ -106,14 +106,14 @@ export default function PropertyServicesSection() {
               </div>
             </div>
             <div className="p-6 pt-8">
-              <h3 className="font-heading font-bold text-lg text-primary mb-4">Construction & Design</h3>
+              <h3 className="font-heading font-bold text-lg text-primary mb-4">Construction & Interior Services</h3>
               <ul className="flex flex-col gap-3 text-xs sm:text-sm text-text-secondary leading-relaxed">
-                <li><strong>Construction:</strong> Vetted contractor building services.</li>
-                <li><strong>Architecture:</strong> Premium structural blueprints and floor planning.</li>
-                <li><strong>Interior Design:</strong> Modular kitchen setups & wardrobe spaces.</li>
-                <li><strong>Renovation:</strong> Floor tiling, bath upgrades, wall updates.</li>
-                <li><strong>Building Materials:</strong> Wholesale builder supplies directories.</li>
-                <li><strong>Project Management:</strong> Periodic site quality verification.</li>
+                <li>Construction</li>
+                <li>Architecture</li>
+                <li>Interior Design</li>
+                <li>Renovation</li>
+                <li>Building Materials</li>
+                <li>Project Management</li>
               </ul>
             </div>
           </motion.div>

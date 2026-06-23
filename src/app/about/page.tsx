@@ -1,91 +1,211 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import TrustSection from "@/components/TrustSection";
-import StatisticsSection from "@/components/StatisticsSection";
-import ChallengeSection from "@/components/ChallengeSection";
-import AISolutionSection from "@/components/AISolutionSection";
-import ProcessTimeline from "@/components/ProcessTimeline";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import Link from "next/link";
-import { ArrowRight, ShieldCheck, Heart, Eye, Target } from "lucide-react";
+import { Shield, Brain, Heart, Lightbulb, Compass, Users, CheckCircle, Award } from "lucide-react";
 
 export const metadata = {
   title: "About Us | Propasure",
-  description: "Learn how Propasure is redefining property advisory in India using AI and legal expertise.",
+  description: "Learn how Propasure is building India's property trust layer combining AI diagnostics and real estate expertise.",
 };
+
+const chooseUsReasons = [
+  {
+    title: "100% Direct Buyer Protection",
+    desc: "We represent your interests exclusively. We do not accept advertising fees or backend margins from builders or developers.",
+    icon: Shield
+  },
+  {
+    title: "AI-Powered Risk Scanning",
+    desc: "Our neural networks sweep municipal land records, title deeds, and legal litigation histories to flag document issues instantly.",
+    icon: Brain
+  },
+  {
+    title: "Dedicated Human Advisors",
+    desc: "Get guidance from senior real estate lawyers, financial consultants, and field inspection executives at every milestone.",
+    icon: Users
+  },
+  {
+    title: "No Hidden Developer Commissions",
+    desc: "We pass on negotiated direct developer savings to our clients, ensuring complete transparency in property pricing.",
+    icon: Lightbulb
+  }
+];
 
 export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen pt-24 bg-white">
-        {/* Page Hero */}
+      <main className="flex flex-col min-h-screen pt-24 bg-white text-left">
+        {/* Company Overview */}
         <section className="bg-gradient-to-b from-slate-50 to-white py-20 border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <span className="text-secondary text-xs uppercase font-extrabold tracking-widest bg-emerald-50 px-3 py-1.5 rounded-full">
-              OUR MISSION
-            </span>
-            <h1 className="font-heading font-black text-4xl sm:text-5xl text-primary mt-6 tracking-tight">
-              Redefining Property Advisory & Execution
-            </h1>
-            <p className="text-text-secondary text-base sm:text-lg max-w-3xl mx-auto mt-4 leading-relaxed">
-              Propasure was built on a simple premise: Indian homebuyers deserve absolute protection and data clarity. We combine cutting-edge AI OCR scanners with senior real estate lawyers to deliver direct, unbiased representation.
-            </p>
-            <div className="mt-8 flex justify-center gap-4">
-              <Link
-                href="/contact"
-                className="bg-primary hover:bg-primary-light text-white font-bold text-sm px-6 py-3 rounded-xl shadow-md transition-all flex items-center gap-2"
-              >
-                Connect With Us <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Vision & Values Grid */}
-        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-md transition-all">
-                <div className="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-3">Our Vision</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  To become India's most trusted real estate ecosystem, where every homebuyer handles transactions with the data clarity, pricing fairness, and legal speed of institutional investors.
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
+                COMPANY OVERVIEW
+              </span>
+              <h1 className="font-heading font-black text-4xl sm:text-5xl text-secondary mt-6 tracking-tight">
+                India’s Property Trust Layer
+              </h1>
+              <p className="text-slate-700 text-base sm:text-lg mt-4 leading-relaxed font-semibold">
+                Propasure is an AI-powered property advisory and transaction execution platform built to make real estate transactions transparent, stress-free, and legally secure.
+              </p>
+              <p className="text-slate-550 text-xs sm:text-sm mt-3 leading-relaxed">
+                Buying a property is one of the most significant financial decisions in an individual's life. Yet, the process remains heavily fragmented, broker-driven, and opaque. Propasure was founded to change this. We integrate advanced AI algorithms with seasoned legal, financial, and real-estate field experts to act as a unified, buyer-side representative.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Vision & Mission */}
+        <section className="py-20 bg-slate-50 border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[24px] p-8 shadow-xs hover:shadow-md transition-all">
+              <span className="text-xs font-bold tracking-wider text-primary uppercase block mb-2">Our Focus</span>
+              <h3 className="font-heading font-black text-2xl text-secondary mb-4">Our Vision</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                To build India's most trusted, secure, and transparent real-estate advisory ecosystem, ensuring every customer feels safe and confident throughout their home buying journey. We aim to benchmark property transactions by making compliance, safety, and unbiased data accessible to all.
+              </p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-[24px] p-8 shadow-xs hover:shadow-md transition-all">
+              <span className="text-xs font-bold tracking-wider text-primary uppercase block mb-2">Our Mission</span>
+              <h3 className="font-heading font-black text-2xl text-secondary mb-4">Our Mission</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                To simplify real estate discovery, due diligence, and execution by matching deep learning technology with real estate professionals. We empower buyers, sellers, landlords, and tenants with verified property scorecards, comprehensive legal title reviews, and professional negotiation support.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Propasure */}
+        <section className="py-20 bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
+                WHY CHOOSE US
+              </span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-secondary mt-6">
+                Protecting Your Family's Life Savings
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {chooseUsReasons.map((item, idx) => {
+                const IconComponent = item.icon;
+                return (
+                  <div key={idx} className="bg-slate-50 border border-slate-200 rounded-[20px] p-6 sm:p-8 flex gap-4 items-start hover:bg-white hover:border-primary/10 transition-all shadow-xs">
+                    <div className="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-bold text-sm sm:text-base text-secondary mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-550 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* AI-powered Property Advisory */}
+        <section className="py-20 bg-slate-50 border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
+                AI TECHNOLOGY
+              </span>
+              <h2 className="font-heading font-black text-3xl sm:text-4xl text-secondary mt-6 tracking-tight">
+                AI-Powered Property Advisory & OCR Diagnostics
+              </h2>
+              <p className="text-slate-650 text-xs sm:text-sm leading-relaxed mt-4">
+                At Propasure, we leverage specialized Machine Learning models trained on historical land records, municipality registries, and developer delivery records. Our proprietary AI Legal Risk Engine scans mother deeds, encumbrance certificates, and RERA filing updates to detect litigation risks.
+              </p>
+              <p className="text-slate-650 text-xs sm:text-sm leading-relaxed mt-3">
+                Our AI Property Score analyzes location appreciation data, proximity transit infrastructure, builder solvency indicators, and registry prices to generate a unified scorecard. This ensures buyers are equipped with real-time benchmark valuations to negotiate with sellers.
+              </p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-[24px] p-8 shadow-md">
+              <h3 className="font-heading font-bold text-base text-secondary mb-4">Diagnostic Capabilities</h3>
+              <div className="flex flex-col gap-4">
+                {[
+                  "Optical Character Recognition (OCR) scanner for mother deeds.",
+                  "Automated encumbrance certificate link-chain checking.",
+                  "Registry price benchmark anomaly flagging.",
+                  "Builder execution and delivery delay forecasting models.",
+                  "Location liveability and infrastructure growth index calculations."
+                ].map((cap, idx) => (
+                  <div key={idx} className="flex gap-3 items-start text-xs sm:text-sm text-slate-600">
+                    <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                    <span>{cap}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Team and Expertise */}
+        <section className="py-20 bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
+                TEAM & EXPERTISE
+              </span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-secondary mt-6">
+                Cross-Functional Real Estate Professionals
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                Our team represents a blend of technology pioneers, legal experts, experienced valuers, and site inspectors dedicated to securing transactions.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-xs">
+                <span className="text-primary font-bold text-3xl sm:text-4xl block mb-2">Legal Scholars</span>
+                <p className="text-xs text-slate-550 leading-relaxed">
+                  Real-estate title attorneys who check chain documents, municipal permits, and RERA compliance live.
                 </p>
               </div>
-
-              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-md transition-all">
-                <div className="w-12 h-12 bg-secondary/5 rounded-2xl flex items-center justify-center text-secondary mb-6">
-                  <ShieldCheck className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-3">Our Promise</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  We maintain absolute integrity by working exclusively as buyer representatives. We accept zero broker payouts or developer cuts, guaranteeing 100% unbiased audits.
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-xs">
+                <span className="text-primary font-bold text-3xl sm:text-4xl block mb-2">Data Scientists</span>
+                <p className="text-xs text-slate-550 leading-relaxed">
+                  Software developers building OCR sweep systems, market appraisal models, and real-estate chatbot layers.
                 </p>
               </div>
-
-              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-md transition-all">
-                <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 mb-6">
-                  <Eye className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-3">AI Diagnostics</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  By running OCR scans on documents and scraping land registry indexes, we flag historical encumbrances, deviations, and pricing anomalies before a deposit is paid.
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-xs">
+                <span className="text-primary font-bold text-3xl sm:text-4xl block mb-2">Field Valuers</span>
+                <p className="text-xs text-slate-550 leading-relaxed">
+                  Field execution experts who inspect properties, check construction metrics, and coordinate registrar filings.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Existing Content Blocks */}
-        <TrustSection />
-        <StatisticsSection />
-        <ChallengeSection />
-        <AISolutionSection />
-        <ProcessTimeline />
-        <TestimonialsSection />
+        {/* Customer Trust and Transparency */}
+        <section className="py-20 bg-slate-50">
+          <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
+            <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
+              TRUST & TRANSPARENCY
+            </span>
+            <h2 className="font-heading font-black text-3xl sm:text-4xl text-secondary leading-tight">
+              Our Pledge: 100% Unbiased Property Representation
+            </h2>
+            <p className="text-slate-650 text-xs sm:text-sm leading-relaxed max-w-2xl">
+              Unlike normal property portals that earn commissions by selling your contact leads to brokers or developers, Propasure does not advertise inventories for builders. Our revenue comes directly from serving you, the customer. This ensures our scorecards, legal evaluations, and pricing benchmarks remain unbiased.
+            </p>
+            <div className="w-full max-w-md border border-slate-200 rounded-xl p-4 bg-white shadow-sm flex items-center gap-3 text-left">
+              <Award className="w-10 h-10 text-primary flex-shrink-0" />
+              <div>
+                <h5 className="font-bold text-secondary text-xs sm:text-sm">Zero Developer Commisions</h5>
+                <p className="text-[10px] sm:text-xs text-slate-550 mt-0.5">We represent the buyer's interests—not the developer's.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

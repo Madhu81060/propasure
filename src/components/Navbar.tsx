@@ -1,291 +1,357 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useScroll } from "@/hooks/useScroll";
 import { cn } from "@/lib/utils";
-import { Menu, X, ArrowRight, Bot, Cpu, ShieldAlert, BadgeHelp, Calculator, Sparkles, Building2, UserCheck, KeySquare, HelpCircle, PhoneCall } from "lucide-react";
+import { Menu, X, ChevronDown, Bot, Cpu, ShieldAlert, Sparkles, KeySquare, Building2, UserCheck, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const scrolled = useScroll(50);
+  const scrolled = useScroll(10);
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<"ai" | "solutions" | null>(null);
+
+  // Close mobile drawer on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  const isActive = (path: string) => pathname === path;
+
+  const navLinks = [
+    { href: "/home", label: "Home" },
+    { href: "/ai-services", label: "AI Services" },
+    { href: "/solutions", label: "Solutions" },
+    { href: "/property-services", label: "Property Services" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
+
+  const solutionsLinks = [
+    { label: "Buy Property", href: "/solutions?tab=buy-property", icon: Sparkles },
+    { label: "Sell Property", href: "/solutions?tab=sell-property", icon: KeySquare },
+    { label: "Rent & Lease", href: "/solutions?tab=rent-property", icon: Building2 },
+    { label: "Landlords", href: "/solutions?tab=landlords", icon: Building2 },
+    { label: "Builders", href: "/solutions?tab=builders", icon: Building2 },
+    { label: "Agents Platform", href: "/solutions?tab=agents", icon: UserCheck },
+  ];
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-primary/5 py-4 shadow-sm"
-          : "bg-transparent py-6"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center font-bold text-white text-lg border-b-2 border-accent transition-transform group-hover:scale-105">
-            P
-          </div>
-          <span className="font-heading font-extrabold text-xl tracking-tight text-primary">
-            PROPA<span className="text-secondary font-bold">SURE</span>
-          </span>
-        </Link>
-
-        {/* Desktop Navigation Menu */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="text-sm font-semibold text-text-secondary hover:text-primary transition-colors">
-            Home
-          </Link>
-
-          {/* AI Services Mega Menu */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-sm font-semibold text-text-secondary hover:text-primary transition-colors py-2 focus:outline-none">
-              AI Services
-              <svg className="w-4 h-4 transition-transform group-hover:rotate-185" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[450px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <div className="bg-white rounded-2xl shadow-xl border border-primary/5 p-6 grid grid-cols-1 gap-4">
-                <Link href="/ai-services" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Bot className="w-5 h-5 text-secondary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">AI Property Advisor</h4>
-                    <p className="text-xs text-text-muted mt-0.5">Your personal real estate advisor available 24/7.</p>
-                  </div>
-                </Link>
-                <Link href="/ai-services" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <PhoneCall className="w-5 h-5 text-secondary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">AI Voice Agent</h4>
-                    <p className="text-xs text-text-muted mt-0.5">Speak naturally in regional languages for property queries.</p>
-                  </div>
-                </Link>
-                <Link href="/ai-services" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Cpu className="w-5 h-5 text-secondary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">AI Property Score</h4>
-                    <p className="text-xs text-text-muted mt-0.5">100-point project matrix checks.</p>
-                  </div>
-                </Link>
-                <Link href="/ai-services" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <ShieldAlert className="w-5 h-5 text-secondary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">AI Legal Risk Engine</h4>
-                    <p className="text-xs text-text-muted mt-0.5">Scan agreements checking encumbrances and title disputes.</p>
-                  </div>
-                </Link>
-                <Link href="/ai-services" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Calculator className="w-5 h-5 text-secondary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">AI Investment Advisor</h4>
-                    <p className="text-xs text-text-muted mt-0.5">Calculate real cash flow, appreciation, and exit parameters.</p>
-                  </div>
-                </Link>
-              </div>
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b",
+          scrolled || mobileOpen
+            ? "bg-white/90 backdrop-blur-md border-slate-200 py-3 shadow-md"
+            : "bg-white/80 backdrop-blur-md border-transparent py-4"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          {/* Logo on Left */}
+          <Link href="/home" className="flex items-center gap-2 group flex-shrink-0">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-bold text-white text-xl border-b-2 border-slate-200 transition-transform group-hover:scale-105 shadow-sm">
+              P
             </div>
-          </div>
+            <span className="font-heading font-extrabold text-xl tracking-tight text-secondary">
+              PROPA<span className="text-primary font-bold">SURE</span>
+            </span>
+          </Link>
 
-          {/* Solutions Mega Menu */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-sm font-semibold text-text-secondary hover:text-primary transition-colors py-2 focus:outline-none">
-              Solutions
-              <svg className="w-4 h-4 transition-transform group-hover:rotate-185" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <div className="bg-white rounded-2xl shadow-xl border border-primary/5 p-6 grid grid-cols-2 gap-x-6 gap-y-4">
-                <Link href="/buy-property" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Sparkles className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Buy Property</h4>
-                    <p className="text-xs text-text-muted">Direct checked properties.</p>
-                  </div>
-                </Link>
-                <Link href="/sell-property" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <KeySquare className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Sell Property</h4>
-                    <p className="text-xs text-text-muted">Marketing with zero middlemen.</p>
-                  </div>
-                </Link>
-                <Link href="/rent-property" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Building2 className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Rent & Lease</h4>
-                    <p className="text-xs text-text-muted">Frictionless leases & checkups.</p>
-                  </div>
-                </Link>
-                <Link href="/builders" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Building2 className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Builders</h4>
-                    <p className="text-xs text-text-muted">Acquisition & CRM utilities.</p>
-                  </div>
-                </Link>
-                <Link href="/agents" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <UserCheck className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Agents Platform</h4>
-                    <p className="text-xs text-text-muted">Leads & automation modules.</p>
-                  </div>
-                </Link>
-                <Link href="/landlords" className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-xl transition-colors">
-                  <Building2 className="w-5 h-5 text-primary mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-bold text-primary">Landlords</h4>
-                    <p className="text-xs text-text-muted">Tenant checks & rent collection.</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Link href="/property-services" className="text-sm font-semibold text-text-secondary hover:text-primary transition-colors">
-            Property Services
-          </Link>
-          <Link href="/pricing" className="text-sm font-semibold text-text-secondary hover:text-primary transition-colors">
-            Pricing
-          </Link>
-          <Link href="/about" className="text-sm font-semibold text-text-secondary hover:text-primary transition-colors">
-            About Us
-          </Link>
-          <Link href="/contact" className="text-sm font-semibold text-text-secondary hover:text-primary transition-colors">
-            Contact
-          </Link>
-        </nav>
-
-        {/* CTA Buttons */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/ai-services"
-            className="flex items-center gap-2 text-sm font-bold bg-secondary hover:bg-secondary-light text-white px-5 py-2.5 rounded-xl shadow-md transition-all hover:-translate-y-0.5"
-          >
-            <Bot className="w-4 h-4" />
-            Talk to AI Advisor
-          </Link>
-          <Link
-            href="/property-services"
-            className="text-sm font-bold bg-primary hover:bg-primary-light text-white px-5 py-2.5 rounded-xl shadow-md transition-all hover:-translate-y-0.5"
-          >
-            Free Consultation
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-primary p-2 focus:outline-none"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-primary/5 shadow-lg p-6 max-h-[85vh] overflow-y-auto animate-fadeIn">
-          <div className="flex flex-col gap-5">
+          {/* Centered Navigation Links on Desktop */}
+          <nav className="hidden lg:flex items-center gap-6">
             <Link
-              href="/"
-              onClick={() => setMobileOpen(false)}
-              className="font-bold text-primary hover:text-secondary pb-2 border-b border-slate-100"
+              href="/home"
+              className={cn(
+                "text-sm font-semibold transition-colors py-2",
+                isActive("/home") ? "text-primary border-b-2 border-primary" : "text-slate-655 hover:text-primary"
+              )}
             >
               Home
             </Link>
 
-            {/* AI Services Mobile Links */}
-            <div>
-              <span className="text-xs uppercase font-extrabold tracking-wider text-text-muted">AI Services</span>
-              <div className="grid grid-cols-1 gap-2 mt-2 pl-3">
-                <Link href="/ai-services" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  AI Advisor
-                </Link>
-                <Link href="/ai-services" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  AI Voice Agent
-                </Link>
-                <Link href="/ai-services" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  AI Property Score
-                </Link>
-                <Link href="/ai-services" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  AI Legal Risk Engine
-                </Link>
-                <Link href="/ai-services" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  AI Investment Planner
-                </Link>
-              </div>
-            </div>
-
-            {/* Solutions Mobile Links */}
-            <div>
-              <span className="text-xs uppercase font-extrabold tracking-wider text-text-muted">Solutions</span>
-              <div className="grid grid-cols-1 gap-2 mt-2 pl-3">
-                <Link href="/buy-property" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Buy Property
-                </Link>
-                <Link href="/sell-property" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Sell Property
-                </Link>
-                <Link href="/rent-property" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Rent & Lease
-                </Link>
-                <Link href="/builders" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Builders
-                </Link>
-                <Link href="/agents" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Agents Platform
-                </Link>
-                <Link href="/landlords" onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-text-secondary">
-                  Landlords
-                </Link>
-              </div>
-            </div>
-
-            <Link
-              href="/property-services"
-              onClick={() => setMobileOpen(false)}
-              className="font-bold text-primary hover:text-secondary pb-2 border-b border-slate-100"
+            {/* AI Services Dropdown */}
+            <div
+              className="relative py-2"
+              onMouseEnter={() => setActiveDropdown("ai")}
+              onMouseLeave={() => setActiveDropdown(null)}
             >
-              Property Services
-            </Link>
-            <Link
-              href="/pricing"
-              onClick={() => setMobileOpen(false)}
-              className="font-bold text-primary hover:text-secondary pb-2 border-b border-slate-100"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMobileOpen(false)}
-              className="font-bold text-primary hover:text-secondary pb-2 border-b border-slate-100"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="font-bold text-primary hover:text-secondary pb-2 border-b border-slate-100"
-            >
-              Contact
-            </Link>
-
-            <div className="flex flex-col gap-3 pt-2">
               <Link
                 href="/ai-services"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 bg-secondary text-white py-3 rounded-xl font-bold shadow-md"
+                className={cn(
+                  "flex items-center gap-1 text-sm font-semibold transition-colors focus:outline-none cursor-pointer",
+                  isActive("/ai-services") ? "text-primary" : "text-slate-655 hover:text-primary"
+                )}
               >
-                <Bot className="w-4 h-4" />
-                Talk to AI Advisor
+                AI Services
+                <ChevronDown className="w-4 h-4" />
               </Link>
-              <Link
-                href="/property-services"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center bg-primary text-white py-3 rounded-xl font-bold shadow-md"
-              >
-                Free Consultation
-              </Link>
+              
+              <AnimatePresence>
+                {activeDropdown === "ai" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[400px]"
+                  >
+                    <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 grid grid-cols-1 gap-2 text-left">
+                      <Link
+                        href="/ai-services"
+                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                      >
+                        <Bot className="w-5 h-5 text-primary mt-0.5" />
+                        <div>
+                          <h4 className="text-xs font-bold text-secondary group-hover:text-primary">AI Advisor</h4>
+                          <p className="text-[11px] text-slate-500 mt-0.5">Real-time real estate chatbot assistant.</p>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/ai-services"
+                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                      >
+                        <Cpu className="w-5 h-5 text-primary mt-0.5" />
+                        <div>
+                          <h4 className="text-xs font-bold text-secondary group-hover:text-primary">AI Property Score</h4>
+                          <p className="text-[11px] text-slate-500 mt-0.5">Automated 100-point project health reviews.</p>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/ai-services"
+                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                      >
+                        <ShieldAlert className="w-5 h-5 text-primary mt-0.5" />
+                        <div>
+                          <h4 className="text-xs font-bold text-secondary group-hover:text-primary">AI Legal Risk OCR</h4>
+                          <p className="text-[11px] text-slate-500 mt-0.5">Audit mother deeds & encumbrance records.</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
+
+            {/* Solutions Dropdown */}
+            <div
+              className="relative py-2"
+              onMouseEnter={() => setActiveDropdown("solutions")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <Link
+                href="/solutions"
+                className={cn(
+                  "flex items-center gap-1 text-sm font-semibold transition-colors focus:outline-none cursor-pointer",
+                  isActive("/solutions") ? "text-primary" : "text-slate-655 hover:text-primary"
+                )}
+              >
+                Solutions
+                <ChevronDown className="w-4 h-4" />
+              </Link>
+              
+              <AnimatePresence>
+                {activeDropdown === "solutions" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[480px]"
+                  >
+                    <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 grid grid-cols-2 gap-2 text-left">
+                      {solutionsLinks.map((sol) => {
+                        const Icon = sol.icon;
+                        return (
+                          <Link
+                            key={sol.label}
+                            href={sol.href}
+                            className="flex items-center gap-3 p-2.5 rounded-lg transition-colors group hover:bg-slate-50 cursor-pointer text-left w-full"
+                          >
+                            <Icon className="w-4.5 h-4.5 text-primary flex-shrink-0" />
+                            <span className="text-xs font-bold text-secondary group-hover:text-primary">
+                              {sol.label}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {navLinks.slice(3).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm font-semibold transition-colors py-2",
+                  isActive(link.href) ? "text-primary border-b-2 border-primary" : "text-slate-655 hover:text-primary"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA Button on Right (Desktop) */}
+          <div className="hidden lg:flex items-center">
+            <Link
+              href="/contact?service=General+Consultation#contact-form"
+              className="bg-primary hover:bg-primary-dark text-white text-xs font-bold px-5 py-3 rounded-xl shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer"
+            >
+              Get Free Consultation
+            </Link>
           </div>
+
+          {/* Hamburger Mobile Menu Toggle Button */}
+          <button
+            className="lg:hidden text-secondary p-2 focus:outline-none cursor-pointer z-[120]"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6 text-secondary" /> : <Menu className="w-6 h-6 text-secondary" />}
+          </button>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* Backdrop for Mobile Menu Drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-[105] lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Drawer (Sliding from the RIGHT) */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed right-0 top-0 h-full w-[290px] sm:w-[320px] bg-white shadow-2xl z-[110] lg:hidden overflow-y-auto flex flex-col justify-between pt-20"
+          >
+            <div className="p-6 flex flex-col gap-6 text-left">
+              {/* Primary Links */}
+              <div className="flex flex-col gap-4">
+                <Link
+                  href="/home"
+                  className={cn(
+                    "text-base font-bold pb-2 border-b border-slate-100 flex justify-between items-center",
+                    isActive("/home") ? "text-primary" : "text-secondary"
+                  )}
+                >
+                  <span>Home</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+                <Link
+                  href="/ai-services"
+                  className={cn(
+                    "text-base font-bold pb-2 border-b border-slate-100 flex justify-between items-center",
+                    isActive("/ai-services") ? "text-primary" : "text-secondary"
+                  )}
+                >
+                  <span>AI Services</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+                <Link
+                  href="/solutions"
+                  className={cn(
+                    "text-base font-bold pb-2 border-b border-slate-100 flex justify-between items-center",
+                    isActive("/solutions") ? "text-primary" : "text-secondary"
+                  )}
+                >
+                  <span>Solutions</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+                <Link
+                  href="/property-services"
+                  className={cn(
+                    "text-base font-bold pb-2 border-b border-slate-100 flex justify-between items-center",
+                    isActive("/property-services") ? "text-primary" : "text-secondary"
+                  )}
+                >
+                  <span>Property Services</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </Link>
+              </div>
+
+              {/* Solutions Quick Links */}
+              <div>
+                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400 block mb-3">
+                  Solutions By Role
+                </span>
+                <div className="flex flex-col gap-2.5">
+                  {solutionsLinks.map((sol) => {
+                    const Icon = sol.icon;
+                    return (
+                      <Link
+                        key={sol.label}
+                        href={sol.href}
+                        className="flex items-center gap-3 text-xs font-bold text-secondary hover:text-primary transition-colors cursor-pointer text-left w-full py-1.5 border-b border-slate-50"
+                      >
+                        <Icon className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>{sol.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Pricing, About, Contact Quick Links */}
+              <div className="flex flex-col gap-4 pt-2 border-t border-slate-100">
+                <div className="grid grid-cols-3 gap-2">
+                  <Link
+                    href="/pricing"
+                    className={cn(
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      isActive("/pricing") && "bg-slate-50 border-primary text-primary"
+                    )}
+                  >
+                    Pricing
+                  </Link>
+                  <Link
+                    href="/about"
+                    className={cn(
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      isActive("/about") && "bg-slate-50 border-primary text-primary"
+                    )}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className={cn(
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      isActive("/contact") && "bg-slate-50 border-primary text-primary"
+                    )}
+                  >
+                    Contact
+                  </Link>
+                </div>
+
+                <Link
+                  href="/contact?service=General+Consultation#contact-form"
+                  className="w-full bg-primary hover:bg-primary-dark text-white text-sm font-bold py-3.5 rounded-xl shadow-md text-center flex items-center justify-center cursor-pointer"
+                >
+                  Get Free Consultation
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

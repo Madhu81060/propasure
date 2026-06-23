@@ -1,9 +1,10 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, FileText, Cpu, ShieldCheck, HelpCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { Bot, CheckCircle, HelpCircle } from "lucide-react";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -11,177 +12,204 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { y: 25, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
+  const textVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    }
   };
 
-  const checklistItems = [
-    "Find the right property",
-    "Verify legal ownership",
-    "Analyze investment potential",
-    "Compare alternatives",
-    "Negotiate better prices",
-    "Secure financing",
-    "Complete registration",
-    "Manage property after purchase",
+  // Coordinates for floating particles
+  const particles = [
+    { x: "12%", y: "40%", size: 4, delay: 0 },
+    { x: "28%", y: "20%", size: 3, delay: 2 },
+    { x: "42%", y: "30%", size: 5, delay: 1.5 },
+    { x: "65%", y: "45%", size: 4, delay: 3.5 },
+    { x: "10%", y: "65%", size: 3, delay: 1 },
+    { x: "55%", y: "75%", size: 5, delay: 4 },
+    { x: "22%", y: "55%", size: 4, delay: 2.5 }
   ];
 
   return (
-    <section id="home" className="relative bg-white pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-      {/* Dynamic Background Gradients */}
-      <div className="absolute top-0 right-0 w-[55%] h-[90%] bg-gradient-to-bl from-slate-100/50 via-slate-50/20 to-transparent pointer-events-none -z-10" />
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-primary/3 filter blur-[100px] pointer-events-none -z-10" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-secondary/3 filter blur-[100px] pointer-events-none -z-10" />
+    <section
+      id="home"
+      className="relative w-full pt-6 pb-12 lg:pt-8 lg:pb-16 overflow-hidden flex items-center select-none text-left bg-white text-secondary"
+    >
+      {/* 1. Full-Width Premium Realistic Glass Skyscraper Backdrop with Breathing Zoom */}
+      <motion.div
+        initial={{ scale: 1 }}
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      >
+        <Image
+          src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1600&q=80"
+          alt="Premium luxury modern residence high-rise"
+          fill
+          priority
+          className="object-cover object-right opacity-[0.4] lg:opacity-[0.6]"
+          style={{ objectPosition: "center 45%" }}
+        />
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left: Text & Content */}
+      {/* 2. Soft Blue and White Gradient Overlays (High-contrast left, fading to transparent right) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-blue-50/20 to-transparent z-10 pointer-events-none" />
+
+      {/* 3. Bottom Mask: Seamless transition to the white homepage content below */}
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/90 to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent z-20 pointer-events-none" />
+
+      {/* 4. Soft Radial Glow Effects */}
+      <div className="absolute top-[15%] right-[10%] w-[300px] h-[300px] rounded-full bg-blue-500/5 filter blur-[90px] pointer-events-none z-10 animate-pulse" />
+      <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-indigo-500/5 filter blur-[100px] pointer-events-none z-10" />
+
+      {/* 5. Slow Floating Light Particles */}
+      <div className="absolute inset-0 pointer-events-none z-10 w-full h-full">
+        {particles.map((p, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -70, 0],
+              x: [0, 8, -8, 0],
+              opacity: [0, 0.4, 0]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: "easeInOut"
+            }}
+            className="absolute rounded-full bg-blue-500/20 filter blur-[0.5px]"
+            style={{
+              left: p.x,
+              top: p.y,
+              width: p.size,
+              height: p.size,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto px-6 relative z-30 w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-7 flex flex-col items-start text-left"
+          className="flex flex-col items-start text-left w-full"
         >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 bg-slate-50 border border-primary/10 rounded-full px-4 py-1.5 mb-6 text-xs font-bold text-primary tracking-wide"
-          >
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-[0_0_8px_#D4AF37]" />
-            India’s First AI-Powered Property Advisory & Execution Platform
-          </motion.div>
+          {/* Main Text Content Wrapper */}
+          <div className="max-w-3xl">
+            {/* Heading */}
+            <div className="overflow-hidden mb-4">
+              <motion.h1
+                variants={textVariants}
+                className="font-heading font-white text-3xl sm:text-2xl lg:text-[3.2rem] lg:leading-[1.15] text-[#0F172A] leading-tight tracking-tight"
+              >
+                Buy, Sell, Rent & Invest in <br className="hidden sm:inline" />
+                Real Estate{" "}
+                <span className="text-[#2563EB]">
+                  With Confidence
+                </span>
+              </motion.h1>
+            </div>
 
-          <motion.h1
-            variants={itemVariants}
-            className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[3.25rem] text-primary leading-tight tracking-tight mb-4"
-          >
-            Buy, Sell, Rent & Invest in Real Estate{" "}
-            <span className="bg-gradient-to-r from-primary via-primary-light to-secondary bg-clip-text text-transparent">
-              with Confidence
-            </span>
-          </motion.h1>
-
-          <motion.p
-            variants={itemVariants}
-            className="font-heading text-xl font-bold text-primary-light tracking-wide mb-1"
-          >
-            Find. Verify. Negotiate. Own.
-          </motion.p>
-          <motion.p
-            variants={itemVariants}
-            className="text-sm font-semibold text-text-muted relative pb-2 mb-6 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-accent"
-          >
-            Property Decisions Assured.
-          </motion.p>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-text-secondary text-sm md:text-base leading-relaxed max-w-2xl mb-8"
-          >
-            Buying a property is one of the biggest financial decisions of your life. Yet most people still rely on advertisements, brokers, incomplete information, and guesswork. At Propasure, we combine Artificial Intelligence, Legal Expertise, Financial Advisory, Market Intelligence, and Real Estate Professionals to help customers make smarter and safer property decisions.
-          </motion.p>
-
-          {/* Checklist */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8 w-full max-w-xl"
-          >
-            {checklistItems.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-text-primary">
-                <CheckCircle className="w-4 h-4 text-secondary flex-shrink-0" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.p variants={itemVariants} className="font-heading text-sm font-bold text-primary mb-6">
-            One Platform. Complete Property Journey.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 w-full sm:w-auto">
-            <Link
-              href="#ai-workspace"
-              className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-light text-white px-7 py-4 rounded-xl font-bold text-sm sm:text-base shadow-lg shadow-secondary/20 hover:shadow-xl transition-all hover:-translate-y-0.5"
+            {/* Tagline */}
+            <motion.p
+              variants={textVariants}
+              className="font-heading text-sm sm:text-base md:text-lg font-bold text-slate-600 tracking-normal mb-4 max-w-2xl leading-relaxed"
             >
-              <Bot className="w-5 h-5" />
-              Talk To AI Advisor
-            </Link>
-            <Link
-              href="#contact"
-              className="flex-grow sm:flex-grow-0 flex items-center justify-center bg-primary hover:bg-primary-light text-white px-7 py-4 rounded-xl font-bold text-sm sm:text-base shadow-lg shadow-primary/10 hover:shadow-xl transition-all hover:-translate-y-0.5 border border-white/10"
-            >
-              Get Free Property Consultation
-            </Link>
-          </motion.div>
-        </motion.div>
+              Smarter infrastructure audits, 30-year deed sweeps, and transparent valuations—driven by Property Intelligence.
+            </motion.p>
 
-        {/* Right: Premium Images & Floating Badges */}
-        <div className="lg:col-span-5 flex justify-center items-center relative">
-          <div className="relative w-full max-w-[420px] aspect-[4/5] mt-8 lg:mt-0">
-            {/* Main Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute top-0 left-0 w-[85%] h-[80%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-10"
+            {/* Description */}
+            <motion.p
+              variants={textVariants}
+              className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-2xl mb-8 font-semibold"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
-                alt="Modern luxury apartments in India"
-                fill
-                priority
-                className="object-cover"
-              />
-            </motion.div>
+              Propasure is an enterprise-grade real estate platform built for serious buyers and institutional investors. By combining neural risk sweep models with verified land records and dedicated property lawyers, we safeguard your capital from pricing bubbles, double-postings, and title litigation disputes.
+            </motion.p>
 
-            {/* Homeowner Overlay Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="absolute bottom-0 right-0 w-[60%] h-[50%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-20"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
-                alt="Happy Indian homeowners receiving keys"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-
-            {/* Floating Badge 1: AI Match */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute top-[28%] -right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-primary/5 shadow-lg flex items-center gap-3 z-30 pointer-events-none"
-            >
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-lg shadow-sm">🤖</div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-extrabold uppercase text-text-muted">AI Verification</span>
-                <span className="text-xs font-bold text-primary">98.4% Legal Match</span>
-              </div>
-            </motion.div>
-
-            {/* Floating Badge 2: Scorecard */}
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-[22%] -left-8 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-primary/5 shadow-lg flex items-center gap-3 z-30 pointer-events-none"
-            >
-              <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-lg shadow-sm">📈</div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-extrabold uppercase text-text-muted">Propasure Score</span>
-                <span className="text-xs font-bold text-primary">87/100 (Excellent)</span>
-              </div>
+            {/* CTA Buttons */}
+            <motion.div variants={textVariants} className="flex flex-wrap gap-4 w-full sm:w-auto mb-10">
+              <Link
+                href="/contact"
+                className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-2 bg-[#1E40AF] hover:bg-[#2563EB] text-white px-7 py-3.5 rounded-xl font-bold text-xs tracking-wide uppercase shadow-md shadow-blue-700/10 hover:shadow-lg transition-all cursor-pointer active:scale-98"
+              >
+                <span>Start Your Journey</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+              <Link
+                href="/solutions"
+                className="flex-grow sm:flex-grow-0 flex items-center justify-center bg-white hover:bg-slate-50 text-[#1E40AF] border border-blue-200/80 hover:border-blue-300 px-7 py-3.5 rounded-xl font-bold text-xs tracking-wide uppercase shadow-xs transition-all cursor-pointer active:scale-98"
+              >
+                <span>Explore Services</span>
+              </Link>
             </motion.div>
           </div>
-        </div>
+
+          {/* Bottom Row of 4 Horizontal Glass Cards */}
+          <motion.div
+            variants={textVariants}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-5xl mt-6 border-t border-slate-100 pt-8"
+          >
+            {[
+              {
+                icon: FileText,
+                title: "Verified Land Records",
+                desc: "Accuracy You Can Trust"
+              },
+              {
+                icon: Cpu,
+                title: "AI-Powered Due Diligence",
+                desc: "Smarter Risk Evaluation"
+              },
+              {
+                icon: ShieldCheck,
+                title: "Legal & Financial Protection",
+                desc: "Secure Your Investments"
+              },
+              {
+                icon: HelpCircle,
+                title: "End-to-End Support",
+                desc: "From Search to Settlement"
+              }
+            ].map((card, idx) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3.5 bg-white/40 backdrop-blur-md border border-slate-100/50 p-4.5 rounded-2xl shadow-[0_2px_12px_rgba(15,23,42,0.02)] transition-all hover:bg-white/60"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                      {card.title}
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-semibold mt-0.5 leading-none">
+                      {card.desc}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   );

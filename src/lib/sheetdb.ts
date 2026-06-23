@@ -23,31 +23,17 @@ export interface FormSubmissionData {
 }
 
 export async function submitToSheetDB(formName: string, rawData: FormSubmissionData) {
-  const apiUrl = process.env.NEXT_PUBLIC_SHEETDB_API_URL;
-  
-  if (!apiUrl) {
-    console.warn("SheetDB API URL is not defined in environment variables. Falling back to console logging.");
-    // Simulate API delay and success in dev mode
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Mock Submit Success:", { formName, rawData });
-    return { success: true, message: "Mock submission successful" };
-  }
+  // Use the approved SheetDB endpoint directly
+  const apiUrl = "https://sheetdb.io/api/v1/k3ys5i5gowc3a";
 
   // Normalize data to map to unified columns in Google Sheets
   const payload = {
     submitted_at: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-    form_name: formName,
     name: rawData.name || rawData.contactPerson || "",
-    phone: rawData.phone || rawData.mobile || "",
+    mobile: rawData.mobile || rawData.phone || "",
     email: rawData.email || "",
-    city: rawData.city || rawData.propertyLocation || "",
-    property_type: rawData.propertyType || "",
-    budget: rawData.budget || "",
-    requirement: rawData.requirement || rawData.message || rawData.query || rawData.propertyDetails || "",
-    company_name: rawData.companyName || "",
-    experience: rawData.experience || "",
-    expected_price: rawData.expectedPrice || "",
-    preferred_date: rawData.preferredDate || "",
+    subject: rawData.propertyType || rawData.subject || formName || "",
+    message: rawData.requirement || rawData.message || rawData.query || "",
   };
 
   try {

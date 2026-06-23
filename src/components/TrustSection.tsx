@@ -32,7 +32,7 @@ export default function TrustSection() {
   };
 
   return (
-    <section className="bg-slate-50 py-16 border-y border-slate-100 relative overflow-hidden">
+    <section className="bg-white py-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <span className="text-secondary text-xs uppercase font-extrabold tracking-widest">TRUST FACTOR</span>
         <h2 className="font-heading font-bold text-2xl sm:text-3xl text-primary mt-2 mb-12">
@@ -52,7 +52,7 @@ export default function TrustSection() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="bg-white border border-primary/5 p-6 rounded-2xl hover:shadow-lg hover:border-primary/10 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1"
+                className="bg-slate-50/40 border border-slate-100/80 p-6 rounded-2xl hover:shadow-[0_20px_50px_-12px_rgba(30,64,175,0.06)] hover:border-blue-100 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1"
               >
                 <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 mb-4 shadow-sm">
                   <IconComp className="w-6 h-6" />

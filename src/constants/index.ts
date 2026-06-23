@@ -3,9 +3,7 @@ import {
   StatItem,
   ProblemItem,
   TimelineStep,
-  PricingPlan,
-  FAQItem,
-  Testimonial
+  FAQItem
 } from '@/types';
 
 export const TRUST_BENEFITS: TrustBenefit[] = [
@@ -219,65 +217,6 @@ export const LANDLORD_SOLUTIONS = [
   { title: 'Dedicated Property Manager', desc: 'Single point of contact managing the asset locally.' }
 ];
 
-export const PRICING_PLANS: PricingPlan[] = [
-  {
-    name: 'Explore',
-    target: 'Ideal For Initial Research',
-    price: 0,
-    priceAnnual: 0,
-    features: [
-      'Property Search',
-      'Property Suggestions',
-      'AI Advisor access',
-      'Market Information benchmarks',
-      'Basic Comparison grid'
-    ]
-  },
-  {
-    name: 'Verify',
-    target: 'For Serious Buyers',
-    price: 9999,
-    priceAnnual: 8499,
-    features: [
-      'Everything In Explore',
-      'Property Scoring parameters',
-      'Market Analysis report',
-      'Site Visit Coordination',
-      'Builder Assessment profile',
-      'Due Diligence Report document'
-    ]
-  },
-  {
-    name: 'Secure',
-    target: 'Risk Reduction Package',
-    price: 24999,
-    priceAnnual: 21249,
-    features: [
-      'Everything In Verify',
-      'Legal Verification checks',
-      'Ownership Verification deed trace',
-      'Loan Assistance processing',
-      'Documentation Review audits',
-      'Legal Support advisor access'
-    ],
-    isFeatured: true
-  },
-  {
-    name: 'Complete',
-    target: 'End-to-End Buying Assistance',
-    price: 49999,
-    priceAnnual: 42499,
-    features: [
-      'Everything In Secure',
-      'Negotiation Support services',
-      'Registration Assistance',
-      'Property Handover audits',
-      'Post Purchase Services (1 year)',
-      'Dedicated Relationship Manager'
-    ]
-  }
-];
-
 export const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'How is Propasure different from traditional listing portals like MagicBricks or Housing.com?',
@@ -292,35 +231,11 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer: 'Our engine runs OCR scans on title deeds, mother deeds, and occupancy certificates, checking them against state land registry databases, RERA tribunals, and municipal records to detect encumbrances, litigation cases, or approval deviations.'
   },
   {
-    question: 'Can I choose individual services instead of a full plan?',
-    answer: 'Yes! We offer our standalone Verify plan for legal due diligence, as well as separate custom legal drafting, structural handover audits, and home loan comparison services. You can upgrade to higher tiers at any stage.'
+    question: 'Can I choose individual services?',
+    answer: 'Yes! We offer standalone services for legal due diligence, custom agreement drafting, pre-delivery inspection audits, and home loan benchmarking. Contact us through our enquiry form to get custom support.'
   },
   {
     question: 'What kind of support is offered for NRIs?',
     answer: 'We provide specialized NRI support including NRO/NRE account guidance, power-of-attorney drafting, virtual site visits, tax advisory on capital gains, and end-to-end property management services.'
-  }
-];
-
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    name: 'Aditya & Priya Sharma',
-    role: 'Homeowners in Whitefield, Bangalore',
-    quote: 'Propasure saved us from booking a flat with a pending builder dispute. Their AI Legal Engine flagged the encumbrance immediately, and their legal team confirmed it. We ended up booking a safe project and saved lakhs.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=150&h=150&q=80'
-  },
-  {
-    name: 'Rajesh Gachibowli',
-    role: 'IT Professional, Hyderabad',
-    quote: 'The AI Investment Advisor is incredible. I adjusted the growth rate and rent sliders to model my ROI. Propasure also handled my HDFC home loan approval and deed registration in a single week.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80'
-  },
-  {
-    name: 'Meera Deshmukh',
-    role: 'Property Owner, Mumbai',
-    quote: 'Selling an apartment in Mumbai from abroad is very stressful. Propasure screened buyers, handled the KYC, drafted the agreement, and coordinated the biometric registration. Professional end-to-end service.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&h=150&q=80'
   }
 ];

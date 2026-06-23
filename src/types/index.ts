@@ -9,22 +9,6 @@ export interface FAQItem {
   answer: string;
 }
 
-export interface Testimonial {
-  name: string;
-  role: string;
-  quote: string;
-  rating: number;
-  image: string;
-}
-
-export interface PricingPlan {
-  name: string;
-  target: string;
-  price: number;
-  priceAnnual: number;
-  features: string[];
-  isFeatured?: boolean;
-}
 
 export interface TimelineStep {
   step: number;
