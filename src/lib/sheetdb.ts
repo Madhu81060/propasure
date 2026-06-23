@@ -10,6 +10,7 @@ export interface FormSubmissionData {
   city?: string;
   propertyLocation?: string;
   propertyType?: string;
+  subject?: string;
   budget?: string;
   requirement?: string;
   message?: string;
