@@ -41,19 +41,7 @@ export default function ContactPage() {
                 </p>
 
                 <div className="flex flex-col gap-6">
-                  {/* Phone */}
-                  <div className="flex gap-4 items-start">
-                    <div className="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center flex-shrink-0 shadow-sm border border-blue-100">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-heading font-bold text-sm text-secondary mb-0.5">Phone Support</h4>
-                      <a href="tel:+919876543210" className="text-sm font-bold text-primary hover:underline transition-colors">
-                        +91 98765 43210
-                      </a>
-                      <p className="text-[10px] text-slate-500 mt-0.5">Mon - Sat, 9:00 AM - 7:00 PM IST</p>
-                    </div>
-                  </div>
+
 
                   {/* Email */}
                   <div className="flex gap-4 items-start">
