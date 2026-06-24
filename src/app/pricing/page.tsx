@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PricingSection from "@/components/PricingSection";
+import AnimatedPageBg from "@/components/AnimatedPageBg";
 
 export const metadata = {
   title: "Plans & Pricing | Propasure",
@@ -11,8 +12,9 @@ export default function PricingPage() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen pt-24 bg-white">
-        <div className="bg-gradient-to-b from-slate-50 to-white py-12 border-b border-slate-100">
+      <main className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+        <AnimatedPageBg />
+        <div className="bg-transparent py-8 lg:py-10 border-b border-slate-100 relative z-10">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <span className="text-secondary text-xs uppercase font-extrabold tracking-widest bg-emerald-50 px-3 py-1.5 rounded-full">
               TRANSPARENT PLANS

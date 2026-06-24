@@ -3,8 +3,10 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AnimatedPageBg from "@/components/AnimatedPageBg";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -54,6 +56,7 @@ interface SolutionTab {
   solutionsTitle: string;
   solutions: { title: string; desc: string }[];
   solutionHighlight: string;
+  image: string;
 }
 
 const TABS: SolutionTab[] = [
@@ -69,7 +72,8 @@ const TABS: SolutionTab[] = [
     challenges: BUYER_CHALLENGES,
     solutionsTitle: "Propasure Verification & Support",
     solutions: BUYER_SERVICES,
-    solutionHighlight: "Our field teams inspect listings, audit legal title records, and benchmark real-time registry transactions to ensure you never overpay."
+    solutionHighlight: "Our field teams inspect listings, audit legal title records, and benchmark real-time registry transactions to ensure you never overpay.",
+    image: "/images/solutions/solutions_buy.png"
   },
   {
     id: "sell-property",
@@ -83,7 +87,8 @@ const TABS: SolutionTab[] = [
     challenges: OWNER_CHALLENGES,
     solutionsTitle: "Direct-to-Buyer Selling Services",
     solutions: OWNER_SERVICES,
-    solutionHighlight: "We benchmark fair listing prices using actual historical transaction registries and market properties directly to pre-approved buyers."
+    solutionHighlight: "We benchmark fair listing prices using actual historical transaction registries and market properties directly to pre-approved buyers.",
+    image: "/images/solutions/solutions_sell.png"
   },
   {
     id: "rent-property",
@@ -97,7 +102,8 @@ const TABS: SolutionTab[] = [
     challenges: TENANT_PROBLEMS,
     solutionsTitle: "Rental Solutions",
     solutions: RENTAL_SOLUTIONS.slice(0, 3), // First 3 are tenant focused
-    solutionHighlight: "Access standard e-signed rental agreements, transparent security deposit policies, and direct communication logs with verified landlords."
+    solutionHighlight: "Access standard e-signed rental agreements, transparent security deposit policies, and direct communication logs with verified landlords.",
+    image: "/images/solutions/solutions_rent.png"
   },
   {
     id: "landlords",
@@ -111,7 +117,8 @@ const TABS: SolutionTab[] = [
     challenges: LANDLORD_CHALLENGES,
     solutionsTitle: "Landlord Solutions",
     solutions: LANDLORD_SOLUTIONS,
-    solutionHighlight: "We assign a dedicated local property manager to coordinate tenant check-ins, routine inspections, rent settlements, and upkeep audits."
+    solutionHighlight: "We assign a dedicated local property manager to coordinate tenant check-ins, routine inspections, rent settlements, and upkeep audits.",
+    image: "/images/solutions/solutions_landlords.png"
   },
   {
     id: "builders",
@@ -125,7 +132,8 @@ const TABS: SolutionTab[] = [
     challenges: DEVELOPER_CHALLENGES,
     solutionsTitle: "Developer Solutions & Analytics",
     solutions: DEVELOPER_SOLUTIONS.slice(0, 6), // Top 6 solutions
-    solutionHighlight: "We integrate developer inventory directly with our advisor engine, pre-qualifying buyer intent and financing capacity prior to site visits."
+    solutionHighlight: "We integrate developer inventory directly with our advisor engine, pre-qualifying buyer intent and financing capacity prior to site visits.",
+    image: "/images/solutions/solutions_builders.png"
   },
   {
     id: "agents",
@@ -139,7 +147,8 @@ const TABS: SolutionTab[] = [
     challenges: AGENT_CHALLENGES,
     solutionsTitle: "Agent Platform & Tools",
     solutions: AGENT_PLATFORM.slice(0, 6), // Top 6 tools
-    solutionHighlight: "Get verified badges to build customer trust, generate high-quality PDF brochures, and automate client follow-ups via WhatsApp."
+    solutionHighlight: "Get verified badges to build customer trust, generate high-quality PDF brochures, and automate client follow-ups via WhatsApp.",
+    image: "/images/solutions/solutions_agents.png"
   }
 ];
 
@@ -166,25 +175,29 @@ function SolutionsContent() {
   const activeTab = TABS.find((t) => t.id === activeTabId) || TABS[0];
   const ActiveIcon = activeTab.icon;
 
+  const activeTabIdx = TABS.findIndex((t) => t.id === activeTabId);
+  const isImageRight = activeTabIdx % 2 === 0;
+
   return (
-    <main className="flex flex-col min-h-screen pt-24 bg-white">
+    <main className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+      <AnimatedPageBg />
       {/* Top Hero Section */}
-      <section className="bg-gradient-to-b from-slate-50 to-white py-16 border-b border-slate-100">
+      <section className="bg-transparent py-8 md:py-10 border-b border-slate-100 relative z-10">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
             OUR SOLUTIONS
           </span>
-          <h1 className="font-heading font-black text-4xl sm:text-5xl text-secondary mt-6 tracking-tight">
+          <h1 className="font-heading font-black text-4xl sm:text-5xl text-secondary mt-3 tracking-tight">
             Tailored Real Estate Services
           </h1>
-          <p className="text-slate-600 text-base max-w-xl mx-auto mt-3">
+          <p className="text-slate-600 text-base max-w-xl mx-auto mt-2">
             Explore dedicated verification, advisory, and execution layers custom-built for every stakeholder in the property ecosystem.
           </p>
         </div>
       </section>
 
       {/* Tab Switcher Grid */}
-      <section className="py-8 bg-white sticky top-[68px] z-40 border-b border-slate-100 shadow-sm backdrop-blur-md bg-white/90">
+      <section className="py-4 sticky top-[68px] z-40 border-b border-slate-100 shadow-sm backdrop-blur-md bg-white/70">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-nowrap md:grid md:grid-cols-6 gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
             {TABS.map((tab) => {
@@ -210,8 +223,8 @@ function SolutionsContent() {
       </section>
 
       {/* Dynamic Content Panel */}
-      <section className="py-16 bg-white min-h-[500px]">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative py-10 lg:py-14 min-h-[500px] z-10 bg-transparent">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTabId}
@@ -219,91 +232,121 @@ function SolutionsContent() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+              className="flex flex-col gap-16"
             >
-              {/* Left Column: Summary & Challenges */}
-              <div className="lg:col-span-5 flex flex-col gap-6 text-left">
-                <div>
-                  <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-2.5 py-1 rounded-full">
-                    {activeTab.tagline}
-                  </span>
-                  <h2 className="font-heading font-black text-2xl sm:text-3xl text-secondary mt-4">
-                    {activeTab.accentTitle}
-                  </h2>
-                  <p className="text-slate-655 text-sm mt-3 leading-relaxed">
-                    {activeTab.description}
-                  </p>
+              {/* Row 1: Content + Image Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                {/* Content Side */}
+                <div className={`lg:col-span-6 flex flex-col gap-6 text-left ${isImageRight ? "order-1" : "order-1 lg:order-2"}`}>
+                  <div>
+                    <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-2.5 py-1 rounded-full">
+                      {activeTab.tagline}
+                    </span>
+                    <h2 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-secondary mt-4 tracking-tight leading-tight">
+                      {activeTab.accentTitle}
+                    </h2>
+                    <p className="text-slate-655 text-sm sm:text-base mt-4 leading-relaxed">
+                      {activeTab.description}
+                    </p>
+                  </div>
+
+                  {/* Highlight banner */}
+                  <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-5 text-slate-700 text-xs sm:text-sm leading-relaxed flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>{activeTab.solutionHighlight}</span>
+                  </div>
                 </div>
 
-                {/* Highlight banner */}
-                <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-5 text-slate-700 text-xs sm:text-sm leading-relaxed flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span>{activeTab.solutionHighlight}</span>
-                </div>
-
-                {/* Challenges Card */}
-                <div className="bg-slate-50 border border-slate-200 rounded-[20px] p-6 sm:p-8">
-                  <h3 className="font-heading font-bold text-base text-secondary border-b border-slate-200/60 pb-3 mb-5 flex items-center gap-2">
-                    <AlertCircle className="w-4.5 h-4.5 text-red-500 flex-shrink-0" />
-                    <span>{activeTab.challengesTitle}</span>
-                  </h3>
-                  <div className="flex flex-col gap-5">
-                    {activeTab.challenges.map((ch, idx) => (
-                      <div key={idx} className="flex gap-3 items-start">
-                        <span className="text-red-500 text-xs flex-shrink-0 mt-0.5">❌</span>
-                        <div>
-                          <h4 className="text-xs font-bold text-secondary mb-0.5">{ch.title}</h4>
-                          <p className="text-[11px] text-slate-500 leading-relaxed">{ch.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+                {/* Image Side */}
+                <div className={`lg:col-span-6 ${isImageRight ? "order-2" : "order-1 lg:order-1"}`}>
+                  <div className="relative h-[280px] sm:h-[380px] w-full rounded-[24px] overflow-hidden shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-500 group">
+                    <Image
+                      src={activeTab.image}
+                      alt={activeTab.accentTitle}
+                      fill
+                      sizes="(max-w-1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 </div>
               </div>
 
-              {/* Right Column: Platform Services & Action CTA */}
-              <div className="lg:col-span-7 flex flex-col gap-8 text-left">
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-secondary mb-6 flex items-center gap-2">
-                    <ActiveIcon className="w-5 h-5 text-primary" />
-                    <span>{activeTab.solutionsTitle}</span>
-                  </h3>
-
-                  {/* Bento Services Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeTab.solutions.map((srv, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/20 transition-all duration-200"
-                      >
-                        <h4 className="font-heading font-bold text-xs sm:text-sm text-primary mb-1.5">
-                          {srv.title}
-                        </h4>
-                        <p className="text-[11px] text-slate-500 leading-relaxed">
-                          {srv.desc}
-                        </p>
-                      </div>
-                    ))}
+              {/* Row 2: Challenges & Platform Services */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-4 border-t border-slate-100">
+                {/* Left Column: Challenges Card */}
+                <div className="lg:col-span-5 flex flex-col gap-6 text-left">
+                  <div className="bg-slate-50/50 border border-slate-200/60 rounded-[24px] p-6 sm:p-8 shadow-xs">
+                    <h3 className="font-heading font-bold text-base text-secondary border-b border-slate-200/50 pb-4 mb-6 flex items-center gap-2">
+                      <AlertCircle className="w-4.5 h-4.5 text-red-500 flex-shrink-0" />
+                      <span>{activeTab.challengesTitle}</span>
+                    </h3>
+                    <div className="flex flex-col gap-4">
+                      {activeTab.challenges.map((ch, idx) => (
+                        <div key={idx} className="flex gap-4 items-start p-4 bg-white border border-slate-200/40 rounded-xl shadow-xs transition-all hover:border-red-200 hover:shadow-sm">
+                          <div className="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5 border border-red-100">
+                            <span className="text-red-500 font-bold text-[10px]">✕</span>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-secondary leading-snug mb-1">{ch.title}</h4>
+                            <p className="text-[11px] text-slate-500 leading-relaxed">{ch.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Subpage CTA Card */}
-                <div className="bg-slate-50 border border-slate-200 rounded-[20px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 mt-4">
-                  <div className="flex flex-col gap-1 text-center sm:text-left">
-                    <h4 className="font-heading font-bold text-sm text-secondary">
-                      Ready to Proceed with {activeTab.label}?
-                    </h4>
-                    <p className="text-[11px] text-slate-550 max-w-sm">
-                      Submit details directly. Our verified property and legal advisors will contact you shortly.
-                    </p>
+                {/* Right Column: Platform Services & Action CTA */}
+                <div className="lg:col-span-7 flex flex-col gap-8 text-left">
+                  <div>
+                    <h3 className="font-heading font-bold text-lg text-secondary mb-6 flex items-center gap-2">
+                      <ActiveIcon className="w-5 h-5 text-primary" />
+                      <span>{activeTab.solutionsTitle}</span>
+                    </h3>
+
+                    {/* Bento Services Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {activeTab.solutions.map((srv, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-gradient-to-br from-white to-slate-50/30 border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-primary/20 hover:-translate-y-0.5 transition-all duration-300 group flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="flex items-center gap-2 mb-3">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary/70 group-hover:bg-primary transition-colors duration-200" />
+                              <h4 className="font-heading font-semibold text-xs sm:text-sm text-secondary group-hover:text-primary transition-colors duration-200">
+                                {srv.title}
+                              </h4>
+                            </div>
+                            <p className="text-[11px] text-slate-500 leading-relaxed">
+                              {srv.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(activeTab.service)}#contact-form`}
-                    className="bg-primary hover:bg-primary-dark text-white font-bold text-xs px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 whitespace-nowrap"
-                  >
-                    <span>Request Consultation</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+
+                  {/* Subpage CTA Card */}
+                  <div className="bg-gradient-to-r from-blue-50/30 to-slate-50 border border-blue-100/60 rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 mt-4 shadow-sm">
+                    <div className="flex flex-col gap-1 text-center sm:text-left">
+                      <h4 className="font-heading font-semibold text-sm sm:text-base text-secondary">
+                        Ready to Proceed with {activeTab.label}?
+                      </h4>
+                      <p className="text-[11px] text-slate-500 max-w-sm leading-relaxed">
+                        Submit details directly. Our verified property and legal advisors will contact you shortly.
+                      </p>
+                    </div>
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(activeTab.service)}#contact-form`}
+                      className="bg-primary hover:bg-primary/95 text-white font-bold text-xs px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 whitespace-nowrap"
+                    >
+                      <span>Request Consultation</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -2,7 +2,11 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white border-t border-blue-700">
+    <footer className="relative bg-primary text-white border-t border-blue-700 overflow-hidden">
+      {/* Subtle animated wave line overlay */}
+      <div className="absolute top-0 left-0 w-[200%] h-[2px] opacity-25 pointer-events-none z-10">
+        <div className="w-full h-full bg-gradient-to-r from-blue-300 via-white to-blue-300 animate-wave" />
+      </div>
       {/* Top half */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-left">
         {/* Brand Block */}

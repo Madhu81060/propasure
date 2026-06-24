@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+import AnimatedPageBg from "@/components/AnimatedPageBg";
 import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,9 +11,10 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen pt-24 bg-white">
+      <main className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+        <AnimatedPageBg />
         {/* Header Hero */}
-        <section className="bg-gradient-to-b from-slate-50 to-white py-16 border-b border-slate-100">
+        <section className="bg-transparent py-8 md:py-10 border-b border-slate-100 relative z-10">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
               CONTACT US
@@ -27,8 +29,8 @@ export default function ContactPage() {
         </section>
 
         {/* Info & Form Body */}
-        <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="relative py-10 lg:py-14 bg-transparent z-10">
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
               
               {/* Left Side: Contact Information */}

@@ -82,11 +82,53 @@ const consultationServices = [
     tag: "Individual Consultation"
   }
 ];
-
 export default function PricingSection() {
+  const pricingParticles = [
+    { x: "12%", y: "15%", size: 4, delay: 0 },
+    { x: "85%", y: "25%", size: 3, delay: 1.5 },
+    { x: "15%", y: "75%", size: 5, delay: 2.2 },
+    { x: "80%", y: "85%", size: 4, delay: 0.8 }
+  ];
+
   return (
-    <section id="pricing-plans" className="bg-white py-16 text-left">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="pricing-plans" className="relative bg-gradient-to-tr from-slate-50/90 via-blue-50/40 to-indigo-100/30 py-10 lg:py-14 text-left overflow-hidden">
+      {/* Scrolling blueprint grid overlay */}
+      <div className="absolute inset-0 grid-pattern-animate pointer-events-none opacity-[0.8] z-0" />
+      
+      {/* Premium Floating Tech Glow Blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[10%] -left-32 w-[450px] h-[450px] rounded-full bg-blue-400/[0.14] filter blur-[110px] animate-glow-1" />
+        <div className="absolute bottom-[10%] -right-20 w-[450px] h-[450px] rounded-full bg-indigo-400/[0.12] filter blur-[115px] animate-glow-2" />
+      </div>
+
+      {/* Floating Light Particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {pricingParticles.map((p, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, 6, -6, 0],
+              opacity: [0, 0.45, 0]
+            }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: "easeInOut"
+            }}
+            className="absolute rounded-full bg-blue-500/25 filter blur-[0.5px]"
+            style={{
+              left: p.x,
+              top: p.y,
+              width: p.size,
+              height: p.size,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mt-6">
@@ -145,8 +187,8 @@ export default function PricingSection() {
         </div>
 
         {/* Feature Comparison Table */}
-        <div className="mt-24">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="mt-10 lg:mt-14">
+          <div className="text-center max-w-2xl mx-auto mb-6">
             <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
               PLAN MATRIX
             </span>
@@ -209,8 +251,8 @@ export default function PricingSection() {
         </div>
 
         {/* Consultation Pricing / Services */}
-        <div className="mt-24 border-t border-slate-200 pt-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="mt-10 lg:mt-14 border-t border-slate-200 pt-8 lg:pt-10">
+          <div className="text-center max-w-2xl mx-auto mb-6">
             <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
               STANDALONE SUPPORT
             </span>
@@ -260,7 +302,7 @@ export default function PricingSection() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-24 bg-slate-900 rounded-[24px] p-8 sm:p-12 text-center text-white relative overflow-hidden">
+        <div className="mt-12 lg:mt-16 bg-slate-900 rounded-[24px] p-8 sm:p-12 text-center text-white relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[200px] rounded-full bg-blue-500/10 filter blur-[70px] pointer-events-none -z-10" />
           <h4 className="font-heading font-black text-2xl sm:text-3xl mb-4">
             Unsure Which Plan Fits Your Property Phase?

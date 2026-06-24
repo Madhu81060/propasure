@@ -17,9 +17,9 @@ export default function AIServicesSection() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("advisor");
 
   return (
-    <section id="ai-workspace" className="bg-slate-50 py-20 border-b border-slate-100 relative">
+    <section id="ai-workspace" className="bg-transparent py-10 lg:py-14 border-b border-slate-100 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-6">
           <span className="text-secondary text-xs uppercase font-extrabold tracking-widest animate-pulse">
             PROPASURE CORE AI SUITE
           </span>
@@ -113,7 +113,7 @@ function AdvisorTab() {
     {
       sender: "bot",
       text: "Hello! I am your Propasure AI Advisor. Which city are you looking to buy, rent, or invest in? Ask me anything (e.g. 'Suggest 3BHK flats in Bangalore', 'Verify builder reliability in Mumbai', or 'What is the appreciation yield in Hyderabad?')",
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      time: "10:00 AM",
     },
   ]);
   const [input, setInput] = useState("");

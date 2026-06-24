@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AnimatedPageBg from "@/components/AnimatedPageBg";
 import { Shield, Eye, Lock, RefreshCw, FileText, Users } from "lucide-react";
 
 export const metadata = {
@@ -11,8 +12,9 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen pt-24 bg-white text-left">
-        <section className="bg-gradient-to-b from-slate-50 to-white py-16 border-b border-slate-100">
+      <main className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden text-left">
+        <AnimatedPageBg />
+        <section className="bg-transparent py-8 md:py-10 border-b border-slate-100 relative z-10">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
               LEGAL DOCUMENT
@@ -26,7 +28,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-white">
+        <section className="py-8 md:py-10 bg-transparent relative z-10">
           <div className="max-w-4xl mx-auto px-6 text-slate-700 leading-relaxed text-sm sm:text-base flex flex-col gap-10">
             {/* 1. Information Collection */}
             <div className="flex gap-4 items-start">

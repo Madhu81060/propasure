@@ -8,11 +8,58 @@ import { ShieldAlert, Calculator, Award, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function PropertyServicesPage() {
+  const propertyPageParticles = [
+    { x: "6%", y: "15%", size: 4, delay: 0 },
+    { x: "92%", y: "22%", size: 3, delay: 2 },
+    { x: "12%", y: "45%", size: 5, delay: 1.2 },
+    { x: "85%", y: "65%", size: 4, delay: 3.1 },
+    { x: "20%", y: "82%", size: 3, delay: 0.5 },
+    { x: "75%", y: "92%", size: 5, delay: 2.5 }
+  ];
+
   return (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen pt-24 bg-white">
-        <section className="bg-gradient-to-b from-slate-50 to-white py-16 border-b border-slate-100">
+      <main className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden text-left">
+        {/* Scrolling blueprint grid overlay */}
+        <div className="absolute inset-0 grid-pattern-animate pointer-events-none opacity-[0.8] z-0" />
+        
+        {/* Premium Floating Tech Glow Blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div className="absolute top-[8%] -left-32 w-[550px] h-[550px] rounded-full bg-blue-400/[0.14] filter blur-[110px] animate-glow-1" />
+          <div className="absolute top-[38%] -right-20 w-[500px] h-[500px] rounded-full bg-indigo-400/[0.12] filter blur-[120px] animate-glow-2" />
+          <div className="absolute bottom-[8%] left-[10%] w-[450px] h-[450px] rounded-full bg-sky-400/[0.09] filter blur-[100px] animate-glow-1" />
+        </div>
+
+        {/* Floating Light Particles */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {propertyPageParticles.map((p, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [0, -60, 0],
+                x: [0, 8, -8, 0],
+                opacity: [0, 0.45, 0]
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                delay: p.delay,
+                ease: "easeInOut"
+              }}
+              className="absolute rounded-full bg-blue-500/25 filter blur-[0.5px]"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.size,
+                height: p.size,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Header Hero */}
+        <section className="bg-transparent py-8 md:py-10 border-b border-slate-100 relative z-10">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <span className="text-primary text-xs uppercase font-extrabold tracking-widest bg-blue-50 px-3 py-1.5 rounded-full">
               PROPERTY SERVICES
@@ -20,7 +67,7 @@ export default function PropertyServicesPage() {
             <h1 className="font-heading font-black text-4xl sm:text-5xl text-secondary mt-6 tracking-tight">
               Stand-alone Advisory & Documentation
             </h1>
-            <p className="text-slate-650 text-base max-w-xl mx-auto mt-3">
+            <p className="text-slate-655 text-base max-w-xl mx-auto mt-3">
               Not ready for a full package? Access our verified checklist reports, legal title opinions, structural audit assessments, and banking approvals individually.
             </p>
           </div>
@@ -30,7 +77,7 @@ export default function PropertyServicesPage() {
         <PropertyServicesSection />
 
         {/* Action Redirection Panel */}
-        <section className="py-20 bg-slate-50 border-t border-slate-100">
+        <section className="py-10 lg:py-14 bg-transparent border-t border-slate-100 relative z-10">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <motion.div
               initial={{ y: 20, opacity: 0 }}

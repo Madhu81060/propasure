@@ -2,9 +2,10 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TrustSection from "@/components/TrustSection";
 import ChallengeSection from "@/components/ChallengeSection";
-import AISolutionSection from "@/components/AISolutionSection";
+import SolutionsSection from "@/components/SolutionsSection";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import CallToAction from "@/components/CallToAction";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -21,19 +22,22 @@ export default function HomePage() {
         {/* 1. Hero Section */}
         <HeroSection />
         
-        {/* 2. Trust Bar (Why Customers Choose Propasure) */}
-        <TrustSection />
+        {/* 2. Solutions Section (Buy, Sell, Rent, Landlords, Builders, Agents) */}
+        <SolutionsSection />
         
         {/* 3. Industry Challenge Section (Real Estate Is Still Broken) */}
         <ChallengeSection />
         
-        {/* 4. Our Solution (AI + Human Intelligence) */}
-        <AISolutionSection />
+        {/* 4. Trust Bar (Why Customers Choose Propasure) */}
+        <TrustSection />
         
         {/* 5. Our Process (Tell Us What You Need) */}
         <ProcessTimeline />
+
+        {/* 6. Frequently Asked Questions */}
+        <FAQSection />
         
-        {/* 6. Call to Action Banner (Replaces bottom enquiry form on Homepage) */}
+        {/* 7. Call to Action Banner (Replaces bottom enquiry form on Homepage) */}
         <CallToAction />
       </main>
       <Footer />

@@ -19,9 +19,9 @@ export default function PropertyServicesSection() {
   };
 
   return (
-    <section id="services" className="bg-slate-50 py-20 border-b border-slate-100">
+    <section id="services" className="bg-transparent py-10 lg:py-14 border-b border-slate-100 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <span className="text-secondary text-xs uppercase font-extrabold tracking-widest font-heading">
             VALUE ADDITIONS
           </span>

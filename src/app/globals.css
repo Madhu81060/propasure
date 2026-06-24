@@ -12,10 +12,19 @@
   --color-accent-dark: #D97706;
   --color-gray-section: #F8FAFC;
   --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-plus-jakarta), sans-serif;
   
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+  --shadow-xl: 0 20px 40px -6px rgba(15, 23, 42, 0.04), 0 8px 20px -4px rgba(15, 23, 42, 0.02);
+  --shadow-2xl: 0 32px 64px -12px rgba(15, 23, 42, 0.06);
 }
 
 :root {
@@ -24,12 +33,15 @@
   --font-sans: var(--font-inter);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 /* Glassmorphism helpers */
@@ -120,7 +132,7 @@ body {
 }
 
 .card-premium:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 25px 50px -15px rgba(30, 64, 175, 0.12), 0 0 0 1.5px rgba(30, 64, 175, 0.08);
   border-color: rgba(30, 64, 175, 0.2);
 }
@@ -140,4 +152,84 @@ body {
 
 .animate-pulse-ring {
   animation: form-pulse-ring 1.5s infinite;
+}
+
+/* Premium Animated Background System Keyframes */
+@keyframes float-glow-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -80px) scale(1.15); }
+}
+@keyframes float-glow-2 {
+  0%, 100% { transform: translate(0, 0) scale(1.15); }
+  50% { transform: translate(-80px, 60px) scale(0.9); }
+}
+@keyframes grid-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 80px 80px; }
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes dash-pulse {
+  0%, 100% { stroke-dashoffset: 0; opacity: 0.15; }
+  50% { stroke-dashoffset: -40; opacity: 0.35; }
+}
+@keyframes gentle-pulse-glow {
+  0%, 100% { filter: blur(35px); opacity: 0.25; }
+  50% { filter: blur(45px); opacity: 0.4; }
+}
+@keyframes wave-move {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-15%); }
+  100% { transform: translateX(0); }
+}
+
+/* Helper Classes */
+.animate-glow-1 {
+  animation: float-glow-1 22s ease-in-out infinite;
+}
+.animate-glow-2 {
+  animation: float-glow-2 28s ease-in-out infinite;
+}
+.grid-pattern-animate {
+  background-image: linear-gradient(to right, rgba(30, 64, 175, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(30, 64, 175, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-scroll 24s linear infinite;
+}
+.grid-pattern-fine {
+  background-image: linear-gradient(to right, rgba(30, 64, 175, 0.015) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(30, 64, 175, 0.015) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: grid-scroll 36s linear infinite;
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 12s ease infinite;
+}
+.animate-dash {
+  stroke-dasharray: 6;
+  animation: dash-pulse 8s linear infinite;
+}
+.pulse-glow {
+  animation: gentle-pulse-glow 4s ease-in-out infinite;
+}
+.animate-wave {
+  animation: wave-move 25s ease-in-out infinite;
+}
+.animate-wave-delayed {
+  animation: wave-move 32s ease-in-out infinite;
+  animation-delay: -6s;
+}
+.bg-premium-tech {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 25%, #f1f5f9 50%, #dbeafe 75%, #f8fafc 100%);
+  background-size: 400% 400%;
+  animation: gradient-bg-shift 25s ease-in-out infinite;
+}
+@keyframes gradient-bg-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

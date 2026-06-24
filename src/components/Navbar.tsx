@@ -46,14 +46,14 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b",
           scrolled || mobileOpen
-            ? "bg-white/90 backdrop-blur-md border-slate-200 py-3 shadow-md"
-            : "bg-white/80 backdrop-blur-md border-transparent py-4"
+            ? "bg-gradient-to-r from-blue-50/95 via-sky-50/90 to-indigo-50/95 backdrop-blur-md border-blue-200/40 py-2.5 shadow-md shadow-blue-900/[0.04]"
+            : "bg-gradient-to-r from-blue-50/75 via-sky-50/70 to-indigo-50/75 backdrop-blur-md border-blue-100/30 py-3.5"
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo on Left */}
           <Link href="/home" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-bold text-white text-xl border-b-2 border-slate-200 transition-transform group-hover:scale-105 shadow-sm">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-bold text-white text-xl border-b-2 border-blue-250 transition-transform group-hover:scale-105 shadow-sm">
               P
             </div>
             <span className="font-heading font-extrabold text-xl tracking-tight text-secondary">
@@ -62,12 +62,14 @@ export default function Navbar() {
           </Link>
 
           {/* Centered Navigation Links on Desktop */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-2">
             <Link
               href="/home"
               className={cn(
-                "text-sm font-semibold transition-colors py-2",
-                isActive("/home") ? "text-primary border-b-2 border-primary" : "text-slate-655 hover:text-primary"
+                "text-[13px] font-bold transition-all px-3 py-1.5 rounded-lg flex items-center justify-center",
+                isActive("/home") 
+                  ? "text-primary bg-blue-50 border border-blue-100/50 shadow-sm shadow-blue-500/5" 
+                  : "text-slate-600 hover:text-primary hover:bg-blue-50/65"
               )}
             >
               Home
@@ -82,8 +84,10 @@ export default function Navbar() {
               <Link
                 href="/ai-services"
                 className={cn(
-                  "flex items-center gap-1 text-sm font-semibold transition-colors focus:outline-none cursor-pointer",
-                  isActive("/ai-services") ? "text-primary" : "text-slate-655 hover:text-primary"
+                  "flex items-center gap-1 text-[13px] font-bold transition-all px-3 py-1.5 rounded-lg focus:outline-none cursor-pointer",
+                  isActive("/ai-services")
+                    ? "text-primary bg-blue-50 border border-blue-100/50 shadow-sm"
+                    : "text-slate-600 hover:text-primary hover:bg-blue-50/65"
                 )}
               >
                 AI Services
@@ -99,10 +103,10 @@ export default function Navbar() {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[400px]"
                   >
-                    <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 grid grid-cols-1 gap-2 text-left">
+                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-blue-900/[0.06] border border-blue-100 p-3 grid grid-cols-1 gap-1 text-left">
                       <Link
                         href="/ai-services"
-                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                        className="flex items-start gap-3 p-2.5 hover:bg-blue-50/60 border border-transparent hover:border-blue-100/40 rounded-xl transition-all group cursor-pointer text-left w-full"
                       >
                         <Bot className="w-5 h-5 text-primary mt-0.5" />
                         <div>
@@ -112,7 +116,7 @@ export default function Navbar() {
                       </Link>
                       <Link
                         href="/ai-services"
-                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                        className="flex items-start gap-3 p-2.5 hover:bg-blue-50/60 border border-transparent hover:border-blue-100/40 rounded-xl transition-all group cursor-pointer text-left w-full"
                       >
                         <Cpu className="w-5 h-5 text-primary mt-0.5" />
                         <div>
@@ -122,7 +126,7 @@ export default function Navbar() {
                       </Link>
                       <Link
                         href="/ai-services"
-                        className="flex items-start gap-3 p-2.5 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-left w-full"
+                        className="flex items-start gap-3 p-2.5 hover:bg-blue-50/60 border border-transparent hover:border-blue-100/40 rounded-xl transition-all group cursor-pointer text-left w-full"
                       >
                         <ShieldAlert className="w-5 h-5 text-primary mt-0.5" />
                         <div>
@@ -145,8 +149,10 @@ export default function Navbar() {
               <Link
                 href="/solutions"
                 className={cn(
-                  "flex items-center gap-1 text-sm font-semibold transition-colors focus:outline-none cursor-pointer",
-                  isActive("/solutions") ? "text-primary" : "text-slate-655 hover:text-primary"
+                  "flex items-center gap-1 text-[13px] font-bold transition-all px-3 py-1.5 rounded-lg focus:outline-none cursor-pointer",
+                  isActive("/solutions")
+                    ? "text-primary bg-blue-50 border border-blue-100/50 shadow-sm"
+                    : "text-slate-600 hover:text-primary hover:bg-blue-50/65"
                 )}
               >
                 Solutions
@@ -162,14 +168,14 @@ export default function Navbar() {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[480px]"
                   >
-                    <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 grid grid-cols-2 gap-2 text-left">
+                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-blue-900/[0.06] border border-blue-100 p-3 grid grid-cols-2 gap-1 text-left">
                       {solutionsLinks.map((sol) => {
                         const Icon = sol.icon;
                         return (
                           <Link
                             key={sol.label}
                             href={sol.href}
-                            className="flex items-center gap-3 p-2.5 rounded-lg transition-colors group hover:bg-slate-50 cursor-pointer text-left w-full"
+                            className="flex items-center gap-3 p-2.5 rounded-xl transition-all border border-transparent hover:border-blue-100/40 group hover:bg-blue-50/60 cursor-pointer text-left w-full"
                           >
                             <Icon className="w-4.5 h-4.5 text-primary flex-shrink-0" />
                             <span className="text-xs font-bold text-secondary group-hover:text-primary">
@@ -189,8 +195,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-semibold transition-colors py-2",
-                  isActive(link.href) ? "text-primary border-b-2 border-primary" : "text-slate-655 hover:text-primary"
+                  "text-[13px] font-bold transition-all px-3 py-1.5 rounded-lg",
+                  isActive(link.href) 
+                    ? "text-primary bg-blue-50 border border-blue-100/50 shadow-sm shadow-blue-500/5" 
+                    : "text-slate-600 hover:text-primary hover:bg-blue-50/65"
                 )}
               >
                 {link.label}
@@ -202,7 +210,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center">
             <Link
               href="/contact?service=General+Consultation#contact-form"
-              className="bg-primary hover:bg-primary-dark text-white text-xs font-bold px-5 py-3 rounded-xl shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer"
+              className="bg-primary hover:bg-primary-dark text-white text-[11px] uppercase tracking-wider font-extrabold px-5 py-3 rounded-xl shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer"
             >
               Get Free Consultation
             </Link>
@@ -315,7 +323,7 @@ export default function Navbar() {
                   <Link
                     href="/pricing"
                     className={cn(
-                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-600",
                       isActive("/pricing") && "bg-slate-50 border-primary text-primary"
                     )}
                   >
@@ -324,7 +332,7 @@ export default function Navbar() {
                   <Link
                     href="/about"
                     className={cn(
-                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-600",
                       isActive("/about") && "bg-slate-50 border-primary text-primary"
                     )}
                   >
@@ -333,7 +341,7 @@ export default function Navbar() {
                   <Link
                     href="/contact"
                     className={cn(
-                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-655",
+                      "text-center text-xs font-bold py-2 border border-slate-200 rounded-lg text-slate-600",
                       isActive("/contact") && "bg-slate-50 border-primary text-primary"
                     )}
                   >
